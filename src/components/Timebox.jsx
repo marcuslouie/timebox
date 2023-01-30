@@ -1,46 +1,32 @@
-import React from "react";
+import { React, useEffect } from "react";
 import "./Timebox.css";
+import Timeslot from "./Timeslot";
 
-function Timebox() {
-  function textInput() {
-    return (
-      <input
-        type="text"
-        onChange={(event) => {
-          console.log(event.target.value);
-        }}
-      />
-    );
-  }
+function Timebox({ date }) {
   return (
     <div>
-      <section></section>
       <h1>Timebox</h1>
-      <section></section>
       <table>
-        <tr>
-          <th>Time</th>
-          <th>:00</th>
-          <th>:30</th>
-        </tr>
-        {Array.from({ length: 8 }, (_, i) => (
+        <thead>
           <tr>
-            <td>{`${i + 5}`}</td>
-            <td>{textInput()}</td>
-            <td>{textInput()}</td>
+            <th key="Time">Time</th>
+            <th key="00">:00</th>
+            <th key="30">:30</th>
           </tr>
-        ))}
-        {Array.from({ length: 11 }, (_, i) => (
-          <tr>
-            <td>{`${i + 1}`}</td>
-            <td class="time">
-              <input type="text" />
-            </td>
-            <td class="time">
-              <input type="text" />
-            </td>
-          </tr>
-        ))}
+        </thead>
+        <tbody>
+          {Array.from({ length: 19 }, (_, i) => (
+            <tr>
+              <td>{i + 5}</td>
+              <td>
+                <Timeslot uid={`${date}-${i + 5.0}`}></Timeslot>
+              </td>
+              <td>
+                <Timeslot uid={`${date}-${i + 5.5}`}></Timeslot>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
