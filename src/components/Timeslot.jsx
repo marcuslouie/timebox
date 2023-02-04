@@ -25,7 +25,7 @@ function Timeslot({ uid }) {
   return (
     <input
       type="text"
-      key={this.state.awayMessage ? "notLoadedYet" : "loaded"}
+      key={"asdfdsf"}
       defaultValue={inputValue}
       // CHANGE DEFAULTVALUE TO VALUE
       onChange={(event) => {
