@@ -25,7 +25,7 @@ function Timeslot({ uid }) {
   return (
     <input
       type="text"
-      key={"asdfdsf"}
+      key={String(uid)}
       defaultValue={inputValue}
       // CHANGE DEFAULTVALUE TO VALUE
       onChange={(event) => {

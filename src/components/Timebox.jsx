@@ -19,10 +19,16 @@ function Timebox({ date }) {
             <tr>
               <td>{i + 5}</td>
               <td>
-                <Timeslot uid={`${date}-${i + 5.0}`}></Timeslot>
+                <Timeslot
+                  uid={`${date}-${i + 5.0}`}
+                  key={`${date}-${i + 5.0}`}
+                ></Timeslot>
               </td>
               <td>
-                <Timeslot uid={`${date}-${i + 5.5}`}></Timeslot>
+                <Timeslot
+                  uid={`${date}-${i + 5.5}`}
+                  key={`${date}-${i + 5.0}`}
+                ></Timeslot>
               </td>
             </tr>
           ))}
