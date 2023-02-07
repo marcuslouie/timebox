@@ -27,7 +27,6 @@ function Timeslot({ uid }) {
       type="text"
       key={String(uid)}
       defaultValue={inputValue}
-      // CHANGE DEFAULTVALUE TO VALUE
       onChange={(event) => {
         handleInputChange(event);
       }}
