@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
+import "./Timebox.css";
 
-function Timeslot({ uid }) {
+function Timeslot({ uid, classValue = "" }) {
   const [inputValue, setInputValue] = useState("");
 
   function checkNotes() {
@@ -24,6 +25,7 @@ function Timeslot({ uid }) {
 
   return (
     <input
+      className={String(classValue)}
       type="text"
       key={String(uid)}
       defaultValue={inputValue}

@@ -1,0 +1,23 @@
+h1 {
+  text-align: center;
+}
+
+.container .box {
+  width: 100px;
+  margin: 50px;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.container .box .box-row {
+  text-align: center;
+  display: table-row;
+}
+.container .box .box-cell {
+  display: table-cell;
+  border: 1px solid black;
+  width: 25%;
+  padding: 10px;
+}

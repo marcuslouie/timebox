@@ -4,8 +4,8 @@ import Timeslot from "./Timeslot";
 
 function Timebox({ date }) {
   return (
-    <div>
-      <h1>Timebox</h1>
+    <>
+      <h2>Timebox</h2>
       <table>
         <thead>
           <tr>
@@ -34,7 +34,7 @@ function Timebox({ date }) {
           ))}
         </tbody>
       </table>
-    </div>
+    </>
   );
 }
 

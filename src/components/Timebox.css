@@ -6,3 +6,8 @@ td {
 .time {
   width: 40%;
 }
+.note {
+  width: 90%;
+  line-height: 200px;
+  word-break: break-word;
+}
