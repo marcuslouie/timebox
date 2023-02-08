@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/timebox/static/css/main.2100a1ca.css",
+    "main.js": "/timebox/static/js/main.70313032.js",
+    "static/js/787.aa92c53d.chunk.js": "/timebox/static/js/787.aa92c53d.chunk.js",
+    "index.html": "/timebox/index.html",
+    "main.2100a1ca.css.map": "/timebox/static/css/main.2100a1ca.css.map",
+    "main.70313032.js.map": "/timebox/static/js/main.70313032.js.map",
+    "787.aa92c53d.chunk.js.map": "/timebox/static/js/787.aa92c53d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2100a1ca.css",
+    "static/js/main.70313032.js"
+  ]
+}
