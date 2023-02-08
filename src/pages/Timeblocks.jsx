@@ -21,7 +21,7 @@ function Timeblocks() {
               <h2>Notes</h2>
               {/* Using a time slot component as a note field */}
               {/* <Timeslot uid={date} classValue="note" key={date}></Timeslot> */}
-              <Note date={date}></Note>
+              <Note date={date} key={`note-data-${date}`}></Note>
             </div>
             <div className="box-cell">
               <Timebox date={date}></Timebox>

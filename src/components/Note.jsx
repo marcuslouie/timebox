@@ -24,8 +24,8 @@ function Note({ date }) {
 
   return (
     <textarea
-      name=""
-      id=""
+      name="note"
+      id={`note-data-${date}`}
       cols="40"
       rows="12"
       onChange={(event) => {
