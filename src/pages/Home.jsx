@@ -1,13 +1,13 @@
 import React from "react";
-import Timebox from "../components/Timebox";
 import Calendargen from "../components/Calendargen";
+import Timeslot from "../components/Timeslot";
 
 function Home() {
   return (
     <div>
       <h1>Home</h1>
       <Calendargen></Calendargen>
-      <Timebox date="today"></Timebox>
+      <Timeslot></Timeslot>
     </div>
   );
 }

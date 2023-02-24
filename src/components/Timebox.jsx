@@ -8,7 +8,7 @@ function Timebox({ date }) {
       <h2>Timebox</h2>
       <table>
         <thead>
-          <tr>
+          <tr key="headers">
             <th key="Time">Time</th>
             <th key="00">:00</th>
             <th key="30">:30</th>
@@ -16,7 +16,7 @@ function Timebox({ date }) {
         </thead>
         <tbody>
           {Array.from({ length: 19 }, (_, i) => (
-            <tr>
+            <tr key={`row-${date}-${i + 5.0}`}>
               <td>{i + 5}</td>
               <td>
                 <Timeslot

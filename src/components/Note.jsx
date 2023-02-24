@@ -3,23 +3,44 @@ import { React, useState, useEffect } from "react";
 function Note({ date }) {
   const [note, setNote] = useState("");
 
-  function checkNotes() {
-    const text = JSON.parse(localStorage.getItem(`note-data-${date}`));
-    if (text) {
-      return text;
-    }
+  async function checkNotes() {
+    let headers = new Headers();
+
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+    const response = await fetch("http://localhost:8080/timeslot", {
+      method: "GET",
+      headers: headers,
+    });
+    response.json().then(function (result) {
+      const jsonString = JSON.stringify(result);
+      const note = JSON.parse(jsonString);
+
+      if ((note[`note-data-${date}`] ??= false)) {
+        setNote(note[`note-data-${date}`]);
+        return note[`note-data-${date}`];
+      }
+    });
   }
 
   useEffect(() => {
-    setNote(checkNotes);
+    checkNotes();
   });
 
-  function handleInputChange(event) {
-    localStorage.setItem(
-      `note-data-${date}`,
-      JSON.stringify(event.target.value)
-    );
-    setNote(checkNotes);
+  async function handleInputChange(event) {
+    console.log(JSON.parse(JSON.stringify(event.target.value)));
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: `{"logo":${JSON.stringify(event.target.value)}}`,
+    };
+
+    fetch(`http://localhost:8080/timeslot/note-data-${date}`, options)
+      .then((response) => response.json())
+      .then(setNote(checkNotes))
+      .catch((err) => console.error(err));
+
+    console.log("handled input change");
   }
 
   return (
