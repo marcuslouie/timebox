@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 
-function Note({ date }) {
+function Note({ date, fetchUrl }) {
   const [note, setNote] = useState("");
 
   async function checkNotes() {
@@ -8,19 +8,22 @@ function Note({ date }) {
 
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
-    const response = await fetch("http://localhost:8080/timeslot", {
+    const response = await fetch(fetchUrl, {
       method: "GET",
       headers: headers,
     });
-    response.json().then(function (result) {
-      const jsonString = JSON.stringify(result);
-      const note = JSON.parse(jsonString);
+    response
+      .json()
+      .then(function (result) {
+        const jsonString = JSON.stringify(result);
+        const note = JSON.parse(jsonString);
 
-      if ((note[`note-data-${date}`] ??= false)) {
-        setNote(note[`note-data-${date}`]);
-        return note[`note-data-${date}`];
-      }
-    });
+        if ((note[`note-data-${date}`] ??= false)) {
+          setNote(note[`note-data-${date}`]);
+          return note[`note-data-${date}`];
+        }
+      })
+      .catch(() => console.log()); //swallow exception to as we render the JSON as a string on purpose
   }
 
   useEffect(() => {
@@ -35,10 +38,9 @@ function Note({ date }) {
       body: `{"logo":${JSON.stringify(event.target.value)}}`,
     };
 
-    fetch(`http://localhost:8080/timeslot/note-data-${date}`, options)
-      .then((response) => response.json())
-      .then(setNote(checkNotes))
-      .catch((err) => console.error(err));
+    fetch(`${fetchUrl}/note-data-${date}`, options).catch((err) =>
+      console.error(err)
+    );
 
     console.log("handled input change");
   }
