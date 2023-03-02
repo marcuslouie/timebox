@@ -3,6 +3,14 @@ import { React, useState, useEffect } from "react";
 function Note({ date, fetchUrl }) {
   const [note, setNote] = useState("");
 
+  //Function retrieves data stored in browser cookies
+  function getCookie(key) {
+    var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+    var usernameString = JSON.stringify(b ? b.pop() : "");
+    usernameString = usernameString.replace(/%22/g, "");
+    return usernameString;
+  }
+
   async function checkNotes() {
     let headers = new Headers();
 
@@ -18,9 +26,9 @@ function Note({ date, fetchUrl }) {
         const jsonString = JSON.stringify(result);
         const note = JSON.parse(jsonString);
 
-        if ((note[`note-data-${date}`] ??= false)) {
-          setNote(note[`note-data-${date}`]);
-          return note[`note-data-${date}`];
+        if ((note[`note-data-${date}-${user}`] ??= false)) {
+          setNote(note[`note-data-${date}-${user}`]);
+          return note[`note-data-${date}-${user}`];
         }
       })
       .catch(() => console.log()); //swallow exception to as we render the JSON as a string on purpose
@@ -29,16 +37,16 @@ function Note({ date, fetchUrl }) {
   useEffect(() => {
     checkNotes();
   });
+  const user = getCookie("_auth_state");
 
   async function handleInputChange(event) {
-    console.log(JSON.parse(JSON.stringify(event.target.value)));
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: `{"logo":${JSON.stringify(event.target.value)}}`,
     };
 
-    fetch(`${fetchUrl}/note-data-${date}`, options).catch((err) =>
+    fetch(`${fetchUrl}/note-data-${date}-${user}`, options).catch((err) =>
       console.error(err)
     );
 
@@ -47,11 +55,12 @@ function Note({ date, fetchUrl }) {
 
   return (
     <textarea
+      style={{ "font-weight": "550", "letter-spacing": "0.05em" }}
       name="note"
-      id={`note-data-${date}`}
+      id={`note-data-${date}-${user}`}
       cols="40"
       rows="12"
-      onChange={(event) => {
+      onBlur={(event) => {
         handleInputChange(event);
       }}
       defaultValue={note}

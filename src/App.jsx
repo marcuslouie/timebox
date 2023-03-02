@@ -3,17 +3,34 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Timeblocks from "./pages/Timeblocks";
+import Login from "./pages/Login";
+import { RequireAuth } from "react-auth-kit";
 
 function App() {
   return (
-    <div>
+    <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/notes/:date" element={<Timeblocks />}></Route>
+          <Route
+            path="/"
+            element={
+              <RequireAuth loginPath="/login">
+                <Home />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route
+            path="/notes/:date"
+            element={
+              <RequireAuth loginPath="/login">
+                <Timeblocks />
+              </RequireAuth>
+            }
+          ></Route>
         </Routes>
       </Router>
-    </div>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import Calendar from "react-calendar";
 import { useNavigate } from "react-router-dom";
-import "react-calendar/dist/Calendar.css";
+import "./Calendargen.css";
 
 function Calendargen() {
   const navigate = useNavigate();

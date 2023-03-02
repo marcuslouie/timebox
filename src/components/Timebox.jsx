@@ -1,10 +1,14 @@
 import { React, useState, useEffect } from "react";
 import "./Timebox.css";
 import Timeslot from "./Timeslot";
+import Loader from "./Loader";
 
 function Timebox({ date, fetchUrl }) {
+  // Show loader until data is populated
+  const [showLoader, setShowLoader] = useState(true);
+
   const [note, setNote] = useState();
-  console.log("timebox rendered");
+  // console.log("timebox rendered");
 
   //load the stored response json ONCE!
   async function checkNotes() {
@@ -30,13 +34,26 @@ function Timebox({ date, fetchUrl }) {
   useEffect(() => {
     async function fetchData() {
       await checkNotes();
+      setShowLoader(false);
     }
     fetchData();
-  }, [fetchUrl]);
+  }, [fetchUrl, date]);
+
+  //Function retrieves data stored in browser cookies
+  function getCookie(key) {
+    var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+    var usernameString = JSON.stringify(b ? b.pop() : "");
+    usernameString = usernameString.replace(/%22/g, "");
+    return usernameString;
+  }
 
   return (
-    <>
-      <h2>Timebox</h2>
+    <div>
+      <div className="circle">
+        <h2 className="text">Timebox</h2>
+      </div>
+
+      {showLoader && <Loader></Loader>}
       <table>
         <thead>
           <tr key="headers">
@@ -55,6 +72,7 @@ function Timebox({ date, fetchUrl }) {
                   note={note}
                   uid={`${date}-${i + 5.0}`}
                   key={`${date}-${i + 5.0}`}
+                  user={getCookie("_auth_state")}
                 ></Timeslot>
               </td>
               <td>
@@ -63,13 +81,14 @@ function Timebox({ date, fetchUrl }) {
                   note={note}
                   uid={`${date}-${i + 5.5}`}
                   key={`${date}-${i + 5.0}`}
+                  user={getCookie("_auth_state")}
                 ></Timeslot>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 

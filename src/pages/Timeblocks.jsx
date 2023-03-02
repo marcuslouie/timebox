@@ -4,6 +4,7 @@ import "./Timeblocks.css";
 import Timebox from "../components/Timebox";
 import Calendargen from "../components/Calendargen";
 import Note from "../components/Note";
+import Signout from "../components/Signout";
 
 function Timeblocks() {
   const { date } = useParams();
@@ -41,22 +42,29 @@ function Timeblocks() {
   }, []);
 
   return (
-    <div>
-      <h1>My Planner</h1>
+    <div className="wholesite-wrapper">
+      <Signout></Signout>
 
-      <div className="container">
-        <div className="box">
-          <div className="box-row">
-            <div className="box-cell">
-              <h2>{date}</h2>
-              <Calendargen></Calendargen>
-              <h2>Notes</h2>
-              {/* Using a time slot component as a note field */}
-              {/* <Timeslot uid={date} classValue="note" key={date}></Timeslot> */}
-              <Note date={date} key={`note-data-${date}`} fetchUrl={ip}></Note>
-            </div>
-            <div className="box-cell">
-              <Timebox date={date} fetchUrl={ip}></Timebox>
+      <h1 style={{ margin: 0, padding: "2vh" }}>My Planner</h1>
+      <div className="center">
+        <div className="container">
+          <div className="box">
+            <div className="box-row">
+              <div className="box-cell">
+                <h2 className="title" style={{ width: "60%" }}>
+                  {date}
+                </h2>
+                <Calendargen></Calendargen>
+                <h2 className="title">Notes</h2>
+                <Note
+                  date={date}
+                  key={`note-data-${date}`}
+                  fetchUrl={ip}
+                ></Note>
+              </div>
+              <div className="box-cell2">
+                <Timebox date={date} fetchUrl={ip}></Timebox>
+              </div>
             </div>
           </div>
         </div>

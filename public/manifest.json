@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Timebox",
+  "name": "My personal timebox planner",
   "icons": [
     {
       "src": "favicon.ico",

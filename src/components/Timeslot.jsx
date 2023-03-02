@@ -1,53 +1,13 @@
 import { React, useState, useEffect } from "react";
 import "./Timebox.css";
 
-function Timeslot({ uid, classValue = "", fetchUrl, note }) {
+function Timeslot({ uid, classValue = "", fetchUrl, note, user }) {
   const [inputValue, setInputValue] = useState("");
 
-  // async function fetchNotes() {
-  //   let headers = new Headers();
-
-  //   headers.append("Content-Type", "application/json");
-  //   headers.append("Access-Control-Allow-Origin", "*");
-  //   const response = await fetch(fetchUrl, {
-  //     method: "GET",
-  //     headers: headers,
-  //   }).catch((err) => console.error(err));
-  //   response.json().then(function (result) {
-  //     const jsonString = JSON.stringify(result);
-  //     const note = JSON.parse(jsonString);
-
-  //     return note;
-  //   });
-  // }
-  // async function renderNote() {
-  //   const renderedNote = await fetchNotes();
-  //   console.log("quack " + renderedNote);
-  // }
-  // renderNote();
-  // async function checkNotes() {
-  // let headers = new Headers();
-  // headers.append("Content-Type", "application/json");
-  // headers.append("Access-Control-Allow-Origin", "*");
-  // const response = await fetch(fetchUrl, {
-  //   method: "GET",
-  //   headers: headers,
-  // }).catch((err) => console.error(err));
-  // response.json().then(function (result) {
-  //   const jsonString = JSON.stringify(result);
-  //   const note = JSON.parse(jsonString);
-  //   console.log(note);
-  //   if ((note[`timeslot-data-${uid}`] ??= false)) {
-  //     setInputValue(note[`timeslot-data-${uid}`]);
-  //     return note[`timeslot-data-${uid}`];
-  //   }
-  // });
-  // }
-
   function parseNote(note) {
-    if (note[`timeslot-data-${uid}`] !== false) {
-      setInputValue(note[`timeslot-data-${uid}`]);
-      return note[`timeslot-data-${uid}`];
+    if (note[`timeslot-data-${uid}-${user}`] !== false) {
+      setInputValue(note[`timeslot-data-${uid}-${user}`]);
+      return note[`timeslot-data-${uid}-${user}`];
     }
   }
 
@@ -68,7 +28,7 @@ function Timeslot({ uid, classValue = "", fetchUrl, note }) {
       body: `{"logo":"${event.target.value}"}`,
     };
 
-    fetch(`${fetchUrl}/timeslot-data-${uid}`, options).catch((err) =>
+    fetch(`${fetchUrl}/timeslot-data-${uid}-${user}`, options).catch((err) =>
       console.error(err)
     );
 
@@ -81,7 +41,8 @@ function Timeslot({ uid, classValue = "", fetchUrl, note }) {
       type="text"
       key={String(uid)}
       defaultValue={inputValue}
-      onChange={(event) => {
+      onBlur={(event) => {
+        console.log("triggered");
         handleInputChange(event);
       }}
     />

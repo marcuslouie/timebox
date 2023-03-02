@@ -1,7 +1,35 @@
+* {
+  letter-spacing: 0.05em;
+}
+
+.title {
+  background-color: #b1dae7;
+  border-radius: 50px;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input {
+  background-color: transparent;
+  border-style: solid;
+  outline: none;
+  font-weight: 550;
+}
+input:hover {
+  background-color: #e6e6e6;
+}
+input:focus {
+  background-color: #cfcece;
+  outline: none;
+}
+
 table,
 th,
 td {
   border: 1px solid;
+  color: #234567;
+  font-weight: 700;
 }
 .time {
   width: 40%;

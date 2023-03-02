@@ -1,7 +1,26 @@
+h1,
+h2,
+input,
+textarea {
+  color: #234567;
+}
+
 h1 {
   text-align: center;
 }
-
+.wholesite-wrapper {
+  background-image: url(../assets/blobs.svg);
+  min-height: 100vh;
+  min-width: 100vw;
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .container .box {
   width: 100px;
   margin: 50px;
@@ -15,9 +34,32 @@ h1 {
   text-align: center;
   display: table-row;
 }
-.container .box .box-cell {
+.container .box .box-cell,
+.container .box .box-cell2 {
   display: table-cell;
-  border: 1px solid black;
+  /* border: 1px solid #234567; */
   width: 25%;
-  padding: 10px;
+  padding: 40px;
+}
+.box-cell2 {
+  background-color: white;
+  border-radius: 50px;
+}
+
+.circle {
+  content: "";
+  display: block;
+  border-radius: 50px;
+  background: #b1dae7;
+  width: 45px;
+  height: 45px;
+  margin-left: 38%;
+  margin-right: auto;
+  margin-bottom: 2vh;
+}
+
+.text {
+  position: relative;
+  padding-left: 20px;
+  padding-top: 4px;
 }
