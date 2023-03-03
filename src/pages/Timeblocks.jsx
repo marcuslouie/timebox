@@ -5,8 +5,10 @@ import Timebox from "../components/Timebox";
 import Calendargen from "../components/Calendargen";
 import Note from "../components/Note";
 import Signout from "../components/Signout";
+import Loader from "../components/Loader";
 
 function Timeblocks() {
+  const [showLoader, setShowLoader] = useState(true);
   const { date } = useParams();
 
   //Grab the client ip so we know what url to fetch when trying to get note data
@@ -37,15 +39,17 @@ function Timeblocks() {
   useEffect(() => {
     async function fetchData() {
       await printIp();
+      setShowLoader(false);
     }
     fetchData();
   }, []);
 
   return (
     <div className="wholesite-wrapper">
+      {showLoader && <Loader></Loader>}
       <Signout></Signout>
 
-      <h1 style={{ margin: 0, padding: "2vh" }}>My Planner</h1>
+      {/* <h1 className="header">PLANNER</h1> */}
       <div className="center">
         <div className="container">
           <div className="box">

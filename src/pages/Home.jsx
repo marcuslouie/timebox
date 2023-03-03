@@ -7,8 +7,8 @@ function Home() {
   return (
     <div className="wholesite-wrapper">
       <Signout></Signout>
-      <h1 style={{ margin: 0, padding: "2vh" }}>Home</h1>
-      <div className="center">
+      <h1 className="header">HOME</h1>
+      <div className="center" style={{ top: "70%" }}>
         <div className="container">
           <div className="box">
             {/* <Loader></Loader> */}

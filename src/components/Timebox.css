@@ -11,11 +11,16 @@
 }
 
 input {
+  display: block;
+  position: relative;
   background-color: transparent;
   border-style: solid;
   outline: none;
+  border: none;
   font-weight: 550;
+  height: 100%;
 }
+
 input:hover {
   background-color: #e6e6e6;
 }
@@ -24,10 +29,15 @@ input:focus {
   outline: none;
 }
 
+table {
+  border-collapse: collapse;
+}
+
 table,
 th,
 td {
   border: 1px solid;
+  border-radius: 10px;
   color: #234567;
   font-weight: 700;
 }

@@ -63,3 +63,21 @@ h1 {
   padding-left: 20px;
   padding-top: 4px;
 }
+.header {
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 15em;
+  letter-spacing: -0.07em;
+  color: #00000047;
+  font-weight: 1000;
+  background: url("../assets/epic.gif");
+  background-size: cover;
+  background-position: center;
+  background-clip: text;
+
+  /* #b1dae7 */
+}

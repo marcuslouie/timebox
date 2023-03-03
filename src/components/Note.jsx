@@ -55,7 +55,13 @@ function Note({ date, fetchUrl }) {
 
   return (
     <textarea
-      style={{ "font-weight": "550", "letter-spacing": "0.05em" }}
+      style={{
+        "font-weight": "550",
+        "letter-spacing": "0.05em",
+        border: "none",
+        outline: "none",
+        borderRadius: "10px",
+      }}
       name="note"
       id={`note-data-${date}-${user}`}
       cols="40"

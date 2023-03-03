@@ -4,6 +4,7 @@
   right: 0;
   padding-top: 2vh;
   padding-right: 2vw;
+  z-index: 2;
 }
 
 .cta {
